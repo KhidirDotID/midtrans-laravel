@@ -37,18 +37,24 @@ class Midtrans
     }
 
     /**
-     * Your merchant's server key
+     * Set your merchant's server key
      *
      * @static
      */
-    public static $serverKey;
+    public static function setServerKey($serverKey)
+    {
+        Config::$serverKey = $serverKey;
+    }
 
     /**
-     * Your merchant's client key
+     * Set your merchant's client key
      *
      * @static
      */
-    public static $clientKey;
+    public static function setClientKey($clientKey)
+    {
+        Config::$clientKey = $clientKey;
+    }
 
     /**
      * True for production
@@ -56,28 +62,40 @@ class Midtrans
      *
      * @static
      */
-    public static $isProduction = false;
+    public static function setProduction($isProduction)
+    {
+        Config::$isProduction = $isProduction;
+    }
 
     /**
      * Set it true to enable 3D Secure by default
      *
      * @static
      */
-    public static $is3ds = false;
+    public static function set3ds($is3ds)
+    {
+        Config::$is3ds = $is3ds;
+    }
 
     /**
      *  Set Append URL notification
      *
      * @static
      */
-    public static $appendNotifUrl;
+    public static function setAppendNotifUrl($appendNotifUrl)
+    {
+        Config::$appendNotifUrl = $appendNotifUrl;
+    }
 
     /**
      *  Set Override URL notification
      *
      * @static
      */
-    public static $overrideNotifUrl;
+    public static function setOverrideNotifUrl($overrideNotifUrl)
+    {
+        Config::$overrideNotifUrl = $overrideNotifUrl;
+    }
 
     /**
      *  Set Payment IdempotencyKey
@@ -85,7 +103,10 @@ class Midtrans
      *
      * @static
      */
-    public static $paymentIdempotencyKey;
+    public static function setPaymentIdempotencyKey($paymentIdempotencyKey)
+    {
+        Config::$paymentIdempotencyKey = $paymentIdempotencyKey;
+    }
 
     /**
      * Enable request params sanitizer (validate and modify charge request params).
@@ -93,14 +114,20 @@ class Midtrans
      *
      * @static
      */
-    public static $isSanitized = false;
+    public static function setSanitized($isSanitized)
+    {
+        Config::$isSanitized = $isSanitized;
+    }
 
     /**
      * Default options for every request
      *
      * @static
      */
-    public static $curlOptions = array();
+    public static function setCurlOptions($curlOptions)
+    {
+        Config::$curlOptions = $curlOptions;
+    }
 
     /**
      * Create Snap payment page

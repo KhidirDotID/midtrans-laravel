@@ -5,15 +5,15 @@ namespace KhidirDotID\Midtrans\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @property string $serverKey
- * @property string $clientKey
- * @property string $isProduction
- * @property string $is3ds
- * @property string $appendNotifUrl
- * @property string $overrideNotifUrl
- * @property string $paymentIdempotencyKey
- * @property string $isSanitized
- * @property string $curlOptions
+ * @method static \KhidirDotID\Midtrans setServerKey($serverKey)
+ * @method static \KhidirDotID\Midtrans setClientKey($clientKey)
+ * @method static \KhidirDotID\Midtrans setProduction($isProduction)
+ * @method static \KhidirDotID\Midtrans set3ds($is3ds)
+ * @method static \KhidirDotID\Midtrans setAppendNotifUrl($appendNotifUrl)
+ * @method static \KhidirDotID\Midtrans setOverrideNotifUrl($overrideNotifUrl)
+ * @method static \KhidirDotID\Midtrans setPaymentIdempotencyKey($paymentIdempotencyKey)
+ * @method static \KhidirDotID\Midtrans setSanitized($isSanitized)
+ * @method static \KhidirDotID\Midtrans setCurlOptions($curlOptions)
  * @method static \KhidirDotID\Midtrans getSnapToken($params)
  * @method static \KhidirDotID\Midtrans createTransaction($params)
  * @method static \KhidirDotID\Midtrans charge($params)
