@@ -37,6 +37,72 @@ class Midtrans
     }
 
     /**
+     * Your merchant's server key
+     *
+     * @static
+     */
+    public static $serverKey;
+
+    /**
+     * Your merchant's client key
+     *
+     * @static
+     */
+    public static $clientKey;
+
+    /**
+     * True for production
+     * false for sandbox mode
+     *
+     * @static
+     */
+    public static $isProduction = false;
+
+    /**
+     * Set it true to enable 3D Secure by default
+     *
+     * @static
+     */
+    public static $is3ds = false;
+
+    /**
+     *  Set Append URL notification
+     *
+     * @static
+     */
+    public static $appendNotifUrl;
+
+    /**
+     *  Set Override URL notification
+     *
+     * @static
+     */
+    public static $overrideNotifUrl;
+
+    /**
+     *  Set Payment IdempotencyKey
+     *  for details (http://api-docs.midtrans.com/#idempotent-requests)
+     *
+     * @static
+     */
+    public static $paymentIdempotencyKey;
+
+    /**
+     * Enable request params sanitizer (validate and modify charge request params).
+     * See Midtrans_Sanitizer for more details
+     *
+     * @static
+     */
+    public static $isSanitized = false;
+
+    /**
+     * Default options for every request
+     *
+     * @static
+     */
+    public static $curlOptions = array();
+
+    /**
      * Create Snap payment page
      *
      * Example:
