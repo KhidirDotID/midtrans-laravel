@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static string getSnapUrl(array $params)
  * @method static mixed createTransaction(array $params)
  * @method static mixed charge(array $params)
- * @method static mixed capture(string $param)
+ * @method static mixed capture(string $transactionId)
  * @method static mixed cardRegister(string $cardNumber, string $expMoth, string $expYear)
  * @method static mixed cardToken(string $cardNumber, string $expMoth, string $expYear, string $cvv)
  * @method static mixed cardPointInquiry(string $tokenId)

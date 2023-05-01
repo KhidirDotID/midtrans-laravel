@@ -226,9 +226,9 @@ class Midtrans
      * @return mixed
      * @throws Exception
      */
-    public static function capture($param)
+    public static function capture($transactionId)
     {
-        return CoreApi::capture($param);
+        return CoreApi::capture($transactionId);
     }
 
     /**
