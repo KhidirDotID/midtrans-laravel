@@ -157,6 +157,33 @@ class Midtrans
     }
 
     /**
+     * Create Snap URL payment
+     *
+     * Example:
+     *
+     * ```php
+     *
+     *   namespace Midtrans;
+     *
+     *   $params = array(
+     *     'transaction_details' => array(
+     *       'order_id' => rand(),
+     *       'gross_amount' => 10000,
+     *     )
+     *   );
+     *   $paymentUrl = Snap::getSnapUrl($params);
+     * ```
+     *
+     * @param  array $params Payment options
+     * @return string Snap redirect url.
+     * @throws Exception curl error or midtrans error
+     */
+    public static function getSnapUrl($params)
+    {
+        return Snap::getSnapUrl($params);
+    }
+
+    /**
      * Create Snap payment page, with this version returning full API response
      *
      * Example:
@@ -199,9 +226,146 @@ class Midtrans
      * @return mixed
      * @throws Exception
      */
-    public function capture($param)
+    public static function capture($param)
     {
         return CoreApi::capture($param);
+    }
+
+    /**
+     * Do `/v2/card/register` API request to Core API
+     *
+     * @param $cardNumber
+     * @param $expMoth
+     * @param $expYear
+     * @return mixed
+     * @throws Exception
+     */
+    public static function cardRegister($cardNumber, $expMoth, $expYear)
+    {
+        return CoreApi::cardRegister($cardNumber, $expMoth, $expYear);
+    }
+
+    /**
+     * Do `/v2/token` API request to Core API
+     *
+     * @param $cardNumber
+     * @param $expMoth
+     * @param $expYear
+     * @param $cvv
+     * @return mixed
+     * @throws Exception
+     */
+    public static function cardToken($cardNumber, $expMoth, $expYear, $cvv)
+    {
+        return CoreApi::cardToken($cardNumber, $expMoth, $expYear, $cvv);
+    }
+
+    /**
+     * Do `/v2/point_inquiry/<tokenId>` API request to Core API
+     *
+     * @param string tokenId - tokenId of credit card (more params detail refer to: https://api-docs.midtrans.com)
+     * @return mixed
+     * @throws Exception
+     */
+    public static function cardPointInquiry($tokenId)
+    {
+        return CoreApi::cardPointInquiry($tokenId);
+    }
+
+    /**
+     * Create `/v2/pay/account` API request to Core API
+     *
+     * @param string create pay account request (more params detail refer to: https://api-docs.midtrans.com/#create-pay-account)
+     * @return mixed
+     * @throws Exception
+     */
+    public static function linkPaymentAccount($params)
+    {
+        return CoreApi::linkPaymentAccount($params);
+    }
+
+    /**
+     * Do `/v2/pay/account/<accountId>` API request to Core API
+     *
+     * @param string accountId (more params detail refer to: https://api-docs.midtrans.com/#get-pay-account)
+     * @return mixed
+     * @throws Exception
+     */
+    public static function getPaymentAccount($accountId)
+    {
+        return CoreApi::getPaymentAccount($accountId);
+    }
+
+    /**
+     * Unbind `/v2/pay/account/<accountId>/unbind` API request to Core API
+     *
+     * @param string accountId (more params detail refer to: https://api-docs.midtrans.com/#unbind-pay-account)
+     * @return mixed
+     * @throws Exception
+     */
+    public static function unlinkPaymentAccount($accountId)
+    {
+        return CoreApi::unlinkPaymentAccount($accountId);
+    }
+
+    /**
+     * Create `/v1/subscription` API request to Core API
+     *
+     * @param string create subscription request (more params detail refer to: https://api-docs.midtrans.com/#create-subscription)
+     * @return mixed
+     * @throws Exception
+     */
+    public static function createSubscription($params)
+    {
+        return CoreApi::createSubscription($params);
+    }
+
+    /**
+     * Do `/v1/subscription/<subscription_id>` API request to Core API
+     *
+     * @param string get subscription request (more params detail refer to: https://api-docs.midtrans.com/#get-subscription)
+     * @return mixed
+     * @throws Exception
+     */
+    public static function getSubscription($subscriptionId)
+    {
+        return CoreApi::getSubscription($subscriptionId);
+    }
+
+    /**
+     * Do disable `/v1/subscription/<subscription_id>/disable` API request to Core API
+     *
+     * @param string disable subscription request (more params detail refer to: https://api-docs.midtrans.com/#disable-subscription)
+     * @return mixed
+     * @throws Exception
+     */
+    public static function disableSubscription($subscriptionId)
+    {
+        return CoreApi::disableSubscription($subscriptionId);
+    }
+
+    /**
+     * Do enable `/v1/subscription/<subscription_id>/enable` API request to Core API
+     *
+     * @param string enable subscription request (more params detail refer to: https://api-docs.midtrans.com/#enable-subscription)
+     * @return mixed
+     * @throws Exception
+     */
+    public static function enableSubscription($subscriptionId)
+    {
+        return CoreApi::enableSubscription($subscriptionId);
+    }
+
+    /**
+     * Do update subscription `/v1/subscription/<subscription_id>` API request to Core API
+     *
+     * @param string update subscription request (more params detail refer to: https://api-docs.midtrans.com/#update-subscription)
+     * @return mixed
+     * @throws Exception
+     */
+    public static function updateSubscription($subscriptionId, $params)
+    {
+        return CoreApi::updateSubscription($subscriptionId, $params);
     }
 
     /**
@@ -212,9 +376,26 @@ class Midtrans
      * @return mixed[]
      * @throws Exception
      */
-    public function status($id)
+    public static function status($id)
     {
         return Transaction::status($id);
+    }
+
+    /**
+     * Retrieve B2B transaction status
+     *
+     * @param string $id Order ID or transaction ID
+     *
+     * @return mixed[]
+     * @throws Exception
+     */
+    public static function statusB2b($id)
+    {
+        return ApiRequestor::get(
+            Config::getBaseUrl() . '/v2/' . $id . '/status/b2b',
+            Config::$serverKey,
+            false
+        );
     }
 
     /**
@@ -225,7 +406,7 @@ class Midtrans
      * @return string
      * @throws Exception
      */
-    public function approve($id)
+    public static function approve($id)
     {
         return Transaction::approve($id);
     }
@@ -238,7 +419,7 @@ class Midtrans
      * @return string
      * @throws Exception
      */
-    public function cancel($id)
+    public static function cancel($id)
     {
         return Transaction::cancel($id);
     }
@@ -251,7 +432,7 @@ class Midtrans
      * @return mixed[]
      * @throws Exception
      */
-    public function expire($id)
+    public static function expire($id)
     {
         return Transaction::expire($id);
     }
@@ -267,9 +448,24 @@ class Midtrans
      * @return mixed[]
      * @throws Exception
      */
-    public function refund($id)
+    public static function refund($id, $params)
     {
-        return Transaction::refund($id);
+        return Transaction::refund($id, $params);
+    }
+
+    /**
+     * Transaction status can be updated into refund
+     * if the customer decides to cancel completed/settlement payment.
+     * The same refund id cannot be reused again.
+     *
+     * @param string $id Order ID or transaction ID
+     *
+     * @return mixed[]
+     * @throws Exception
+     */
+    public static function refundDirect($id, $params)
+    {
+        return Transaction::refund($id, $params);
     }
 
     /**
@@ -281,7 +477,7 @@ class Midtrans
      * @return mixed[]
      * @throws Exception
      */
-    public function deny($id)
+    public static function deny($id)
     {
         return Transaction::deny($id);
     }
