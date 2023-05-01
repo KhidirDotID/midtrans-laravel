@@ -43,14 +43,14 @@
     "extra": {
         "laravel": {
             "providers": [
-                "\\KhidirDotID\\Midtrans\\Providers\\MidtransServiceProvider"
+                "KhidirDotID\\Midtrans\\Providers\\MidtransServiceProvider"
             ],
             "aliases": {
-                "Midtrans": "\\KhidirDotID\\Midtrans\\Facades\\Midtrans"
+                "Midtrans": "KhidirDotID\\Midtrans\\Facades\\Midtrans"
             }
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true,
     "funding": [
         {
