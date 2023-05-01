@@ -1,7 +1,7 @@
 {
     "name": "khidirdotid/midtrans-laravel",
     "type": "library",
-    "description": "CoreUI templates for InfyOm Laravel Generator",
+    "description": "A Midtrans Wrapper for Laravel",
     "keywords": [
         "midtrans",
         "laravel"
