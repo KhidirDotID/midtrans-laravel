@@ -13,6 +13,10 @@ class MidtransServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom($this->getConfigPath(), 'midtrans');
+
+        $this->app->singleton('midtrans', function ($app) {
+            return new Midtrans($app);
+        });
     }
 
     /**
@@ -22,13 +26,7 @@ class MidtransServiceProvider extends ServiceProvider
     {
         $this->publishes([
             $this->getConfigPath() => config_path('midtrans.php'),
-        ], 'config');
-
-        $this->app->singleton('midtrans', function ($app) {
-            return new Midtrans;
-        });
-
-        Midtrans::registerMidtransConfig();
+        ], 'midtrans-config');
     }
 
     public function getConfigPath()
